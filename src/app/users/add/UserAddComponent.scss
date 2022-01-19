@@ -1,0 +1,40 @@
+@import "src/assets/scss/common";
+
+.user-add {
+    .gender-div {
+        flex: 1px;
+    }
+    .submit {
+        width: 200px;
+	}
+    .helperText {
+        color: $text-light;
+        font-size: smaller;
+        color: #ffa53c; 
+    }
+    .form-check-input {
+        margin-left: 20px;
+        transform: scale(1.5);
+        margin-top: 9px;
+    }
+  
+    // .MuiFormHelperText-contained {
+    //     margin: 0px;
+    // }
+    Button {
+        padding: 10px 40px;
+        margin-right: 20px;
+    }
+    .MuiIconButton-sizeSmall{
+        font-size: 1rem !important;
+    }
+    .eye_btn_wrapper {
+        position: absolute;
+        top: 39px !important;
+        right: -2px;
+        z-index: 2;
+        Button {
+            padding: 0px 0px !important;
+        }
+    }
+}

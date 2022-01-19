@@ -1,0 +1,415 @@
+@import "src/assets/scss/common";
+
+.app-layout {
+    background-color: $backdrop-color !important;
+    height: 100vh;
+    .hospital-logo {
+        height: 50px;
+    }
+    .drawerContainer {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 550px;
+        justify-content: space-between;
+        overflow: auto;
+    }
+    .over-flow {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
+        text-align: left;
+    }
+
+    .access-role {
+        background-color: #ffa53c;
+        border-radius: 10px;
+        .MuiIconButton-label {
+            color: white;
+            font-size: small;
+            line-height: 0px;
+            font-weight: 400;
+        }
+        .MuiIconButton-root {
+            padding: 7px 20px;
+        }
+    }
+
+    .expiry-details {
+        margin-top: -20px !important;
+    }
+    .exit-view {
+        background-color: $primary-color !important;
+    }
+    .menuButton {
+        @include sm() {
+            display: none;
+        }
+    }
+    .awaited {
+        color: #f18a2f;
+        font-size: smaller;
+    }
+    .package-expiry-bgcolor {
+        background-color: #fff6f8 !important;
+    }
+
+    .next-appointment {
+        text-align: center;
+        // border: 1px solid $text-light;
+        background: $backdrop-color;
+        padding-bottom: 10px;
+
+        .divider {
+            margin: 10px 0px;
+            background-color: $primary-color !important;
+            width: 100%;
+        }
+        .patient-details {
+            margin: auto;
+            padding: 7px;
+            margin-bottom: -20px;
+            padding-left: 10px;
+            .arrived {
+                color: $success-color;
+                font-size: smaller;
+            }
+            .countdown {
+                font-size: small;
+                color: $primary-color !important;
+                font-weight: 600;
+            }
+            .timings {
+                line-height: 5px;
+            }
+            .start-button {
+                background-color: $primary-color;
+                padding: 5px;
+                margin: 20px auto;
+                border-radius: 5px;
+                font-size: small;
+                color: white;
+            }
+            .package-expiry-details {
+                color: $warn-color !important;
+            }
+            .days {
+                font-size: x-large;
+                margin-left: 20px;
+            }
+        }
+        .patient-name {
+            color: $primary-color;
+            line-height: 15px;
+            font-weight: 600;
+            flex: 2px;
+            text-align: left;
+        }
+        .package-details {
+            font-weight: 500;
+            line-height: 18px;
+        }
+        .package-expiry-heading {
+            color: $warn-color !important;
+            margin: 0px 20px;
+        }
+        .package-expiry-divider {
+            background-color: $warn-color !important;
+        }
+    }
+    .heading-next {
+        color: $primary-color !important;
+        font-size: medium;
+        text-align: left;
+        margin-left: 20px;
+    }
+    .brand {
+        width: calc(240px - 10px);
+
+        img {
+            max-height: 100%;
+            width: 200px;
+        }
+        // @include xs {
+        //     width: 30px;
+        // }
+        @include xs {
+            display: flex;
+        }
+    }
+    .MuiSelect-select:focus {
+        background-color: white !important;
+    }
+    .MuiToolbar-root .MuiToolbar-regular .MuiToolbar-gutters {
+        margin: 0px;
+    }
+    .MuiToolbar-gutters {
+        padding: 0px 53px 0px 5px;
+        margin: 0px;
+    }
+    .MuiAppBar-root {
+        box-shadow: 0 0 4px #aaaaaa !important;
+    }
+
+    .MuiPaper-root.MuiDrawer-paper,
+    .MuiDrawer-docked {
+        transition: width 0.05s linear;
+        box-shadow: 0 0 4px #aaaaaa70;
+    }
+
+    .drawerOpened .MuiPaper-root.MuiDrawer-paper,
+    .drawerOpened.MuiDrawer-docked {
+        background-color: white;
+        .MuiTypography-body1 {
+            color: $text-light;
+        }
+    }
+
+    .drawerClosed,
+    .drawerOpened {
+        .MuiListItem-button {
+            // border-radius: 0 20px 20px 0
+            width: 100%;
+            .inactive-icon {
+                display: none;
+                height: 20px;
+                color: $text-light;
+            }
+            &.active {
+                background-color: $backdrop-color;
+                border-left: 5px solid $primary-color;
+                width: 100%;
+                .active-icon {
+                    display: none;
+                    height: 20px;
+                    margin-top: -10px;
+                    color: $primary-color;
+                }
+                .inactive-icon {
+                    display: inline;
+                    height: 20px;
+                    margin-top: 0px;
+                    color: $text-light;
+                }
+                .MuiListItemIcon-root {
+                    color: $primary-color;
+                    fill: $primary-color;
+                }
+                .MuiSvgIcon-root {
+                    color: $primary-color;
+                    margin-left: -5px;
+                }
+
+                .MuiListItemText-root {
+                    font-weight: bold;
+                    .MuiTypography-body1 {
+                        color: $primary-color;
+                    }
+                }
+            }
+        }
+
+        .MuiDrawer-paper {
+            .MuiListItemIcon-root {
+                //min-width: 52px;
+                color: $background-color;
+                justify-content: flex-start;
+                margin: 4px 0 4px 8px;
+            }
+        }
+    }
+
+    .drawerOpened {
+        width: 240px;
+
+        .MuiPaper-root.MuiDrawer-paper,
+        &.MuiDrawer-docked {
+            width: 240px;
+        }
+
+        .MuiDrawer-paper {
+            .MuiListItemIcon-root {
+                min-width: 40px;
+                color: $text-light !important;
+            }
+
+            .MuiListItemText-root {
+                display: block;
+            }
+        }
+    }
+    .MuiButtonBase-root.MuiButton-contained {
+        border-radius: 10px;
+        padding: 10px 20px;
+    }
+    .drawerClosed {
+        width: 0px;
+
+        .powered-by-holder {
+            display: none;
+        }
+
+        .MuiPaper-root.MuiDrawer-paper,
+        &.MuiDrawer-docked {
+            width: 0px;
+        }
+
+        .MuiListItem-gutters {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .MuiDrawer-paper {
+            .MuiListItemIcon-root {
+                justify-content: center;
+                min-width: 34px;
+            }
+
+            .MuiListItemText-root {
+                display: none;
+            }
+        }
+    }
+
+    .powered-by-holder {
+        display: flex;
+        //  position: absolute;
+        bottom: 10px;
+        width: 100%;
+        flex-direction: column;
+        background-image: url("../../assets/images/footer_icon.png");
+        background-position: center bottom;
+        background-size: cover;
+        background-repeat: no-repeat;
+        overflow: auto;
+        .powered-by-text {
+            color: black;
+            font-size: smaller;
+            font-weight: 500;
+        }
+        .logout-wrapper {
+            margin: 0 0 20 0;
+            //text-align: center;
+            justify-content: center;
+            display: flex;
+            flex: 1;
+
+            button {
+                width: 70%;
+                margin: auto 0 20px 0px;
+                text-transform: capitalize;
+                border: 1px solid $primary-color;
+                background-color: $backdrop-color;
+                color: $primary-color;
+                height: 50px;
+                border-radius: 5px;
+            }
+
+            .logout-custom-btn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 14px;
+                width: 60%;
+                padding: 6px 20px;
+                color: $primary-color;
+                outline: none;
+                cursor: pointer;
+                opacity: 0.9;
+
+                &:hover {
+                    opacity: 1;
+                    box-shadow: 0 1px 6px #aaaaaa60;
+                }
+            }
+        }
+
+        .powered-by-wrapper {
+            display: flex;
+            flex-direction: column;
+            margin: 5px;
+            font-size: 12px;
+            text-align: center;
+            line-height: 24px;
+            color: $accent-color;
+            justify-content: center;
+            align-items: center;
+
+            div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+
+    .logout-holder {
+        color: $accent-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        opacity: 0.9;
+
+        &:hover {
+            opacity: 1;
+            color: red;
+        }
+    }
+
+    .page-container {
+        flex: 1;
+        display: flex;
+        height: calc(100vh - 64px);
+        overflow: auto;
+        background-color: $backdrop-color;
+    }
+
+    .back-title-holder {
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+        flex: 1;
+        button {
+            margin-right: 20px;
+        }
+
+        .page-title-text {
+            font-size: 1rem;
+            @include sm() {
+                font-size: 16px;
+            }
+            @include md() {
+                font-size: 25px;
+            }
+            font-weight: 400;
+            color: $blue-color;
+        }
+    }
+
+    .notification-lang-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+
+        .notificaton-container {
+            cursor: pointer;
+            border-radius: 0.5rem;
+            margin-right: 1rem;
+            padding: 0.5rem;
+            background: rgba(1, 110, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .MuiBadge-dot {
+                background: orange !important;
+            }
+
+            .notification-icon {
+                fill: $primary-color;
+            }
+        }
+    }
+}

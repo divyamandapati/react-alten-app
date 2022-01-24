@@ -1,0 +1,82 @@
+@import "src/assets/scss/common";
+
+.client-list {
+  margin: 10px 5px;
+  align-content: center;
+  padding-bottom: 930px;
+  .paper {
+    border-radius: 10px;
+  }
+  .MuiTableCell-root {
+    padding: 12px 32px !important;
+  }
+  .table-row-padding {
+    padding: 20px 32px !important;
+  }
+  .add-button {
+    color: white;
+    padding: 10px 25px 10px 20px !important;
+    font-size: medium;
+    background-color: $primary-color;
+    margin-left: 30px !important;
+    height: 40px;
+    border-radius: 30px !important;
+  }
+  .edit-button {
+    color: $primary-color;
+  }
+  .delete-button {
+    color: $primary-color;
+  }
+  .hide {
+    display: none;
+    max-width: 300px;
+  }
+  .client-name:hover + .hide {
+    display: block;
+    padding: 10px 20px;
+    justify-content: center;
+    position: absolute;
+    background-color: white;
+    color: $primary-color;
+    box-shadow: 0 0 3px $primary-color;
+    border-radius: 5px;
+    margin-top: -10px;
+  }
+  .admin-role {
+    color: $success-color !important;
+  }
+  .team-role {
+    color: $primary-color !important;
+  }
+  .no-data {
+    margin: auto;
+    text-align: center;
+    img {
+      margin: 20px auto;
+      height: 70%;
+      width: 350px;
+      opacity: 0.7;
+    }
+    h1 {
+      color: $text-light;
+      font-weight: 400;
+    }
+  }
+  .search_icon {
+    position: absolute;
+    top: 8px;
+    z-index: 2;
+    color: $primary-color;
+    right: 10px;
+  }
+  .table-count {
+    color: $primary-color;
+  }
+  .table-left {
+    text-align: left !important;
+  }
+  .table-center {
+    text-align: center !important;
+  }
+}

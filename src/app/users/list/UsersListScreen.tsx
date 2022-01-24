@@ -46,7 +46,7 @@ export default function UsersListScreen(props: any) {
         const options = new TsDataListOptions({
             webMatColumns: ['User Id', 'Name', 'Email', 'Phone','Position','actions'],
             mobileMatColumns: ['User Id', 'Name', 'Email', 'Phone','Position', 'actions'],
-        }, ENV.API_URL + 'candidate', setList, ApiService,'get');
+        }, ENV.API_URL + '/candidate', setList, ApiService,'get');
 
         let tableWrapperObj = new TsDataListWrapperClass(options)
         setList({ table: tableWrapperObj });

@@ -46,6 +46,15 @@ export const MENUITEMS: Menu[] = [
         id:"users",
         allowed_roles: [ SUPER_ADMIN, TEAM_MEMBER ]
     },
+    {
+        state: '/client/list',
+        name: 'Client',
+        type: 'link',
+        outlineIcon: <GroupOutlinedIcon />,
+        filledIcon: <GroupIcon />,
+        id:"users",
+        allowed_roles: [ SUPER_ADMIN, TEAM_MEMBER ]
+    },
 ];
 const MenuItemsComponent = (props: any) => {
     const {t}=useTranslation()

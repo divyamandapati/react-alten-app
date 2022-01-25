@@ -19,10 +19,17 @@ import { Button,  LinearProgress, TextField } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search'
 import ClearIcon from '@material-ui/icons/Clear';
 import CommonService from "../../../helpers/common-service";
+import DialogComponent from "../../../components/core/DialogComponent";
+import ClientAdd from "../add/ClientAdd";
+import ClientEdit from "../edit/ClientEdit";
 
 export default function ClientList(props: any) {
     const [list, setList] = useState<{ table: TsDataListWrapperClass } | null>(null);
+    const [isAddOpen, setIsAddOpen] = useState<boolean>(false);
+    const [isEditOpen, setIsEditOpen] = useState<boolean>(false);
     const [page,setPage]=React.useState<any>(1);
+    const [clientDetails,setClientDetails] = useState<any>(null);
+
     const onReload = useCallback((page = 1) => {
         if (list) {
             list.table.reload(page);
@@ -66,9 +73,41 @@ export default function ClientList(props: any) {
         }
     },[list])
 
+
+    const openAdd =useCallback (() => {
+        setIsAddOpen(true);
+    },[])
+
+    const cancelAdd = useCallback(() => {
+        setIsAddOpen(false);
+        onReload(1)
+    },[onReload])
+
+    const confirmAdd = useCallback(() => {
+        setIsAddOpen(false);
+        onReload(1);
+    }, [onReload])
+
+
+    const openEdit =useCallback (() => {
+        setIsEditOpen(true);
+    },[])
+
+    const cancelEdit = useCallback(() => {
+        setIsEditOpen(false);
+        onReload(1)
+    },[onReload])
+
+    const confirmEdit = useCallback(() => {
+        setIsEditOpen(false);
+        onReload(1);
+    }, [onReload])
+
+
+
     const onDeleteUser = useCallback((id: string) => {
         let payload = {}
-        CommonService._api.delete(ENV.API_URL + 'candidate/' + id, payload).then(() => {
+        CommonService._api.delete(ENV.API_URL + 'client/' + id, payload).then(() => {
             init()
             onReload(1)
         }).catch((err)=>{
@@ -76,8 +115,25 @@ export default function ClientList(props: any) {
         })
     },[onReload,init])
 
+    const getClientDetails = useCallback((id:string)=>{
+        CommonService._api.get(ENV.API_URL + 'client/' + id).then((resp) => {
+            setClientDetails(resp?.data);
+            console.log(resp?.data)
+            openEdit()
+        }).catch((err)=>{
+            CommonService.showToast(err?.error || 'Error', 'error');
+        })
+    },[])
+
     return (
         <>
+            <DialogComponent class={'dialog-side-wrapper'} open={isAddOpen} cancel={cancelAdd}>
+                <ClientAdd cancel={cancelAdd} confirm={confirmAdd} />
+            </DialogComponent>
+            {/*<DialogComponent class={'dialog-side-wrapper'} open={isEditOpen} cancel={cancelEdit}>*/}
+            {/*    <ClientEdit cancel={cancelEdit} confirm={confirmEdit} clientDetails={clientDetails}/>*/}
+            {/*</DialogComponent>*/}
+
             <div className={'client-list  screen crud-layout'}>
                 <Paper className="paper">
                     <React.Fragment>
@@ -107,7 +163,7 @@ export default function ClientList(props: any) {
                                 </div>
                                 <div>
                                     <div className="actions">
-                                        <Button variant={"contained"} color="secondary" id="btn_add_client_list" className={"add-button"}>
+                                        <Button variant={"contained"} color="secondary" id="btn_add_client_list" className={"add-button"} onClick={openAdd}>
                                             <AddIcon/> &nbsp;&nbsp;{('ADD Client')}
                                         </Button>
                                     </div>
@@ -154,7 +210,7 @@ export default function ClientList(props: any) {
                                                     {row['position']}
                                                 </TableCell>
                                                 <TableCell>
-                                                    <Button id="btn_edit_client_list" className={"edit-button"} >
+                                                    <Button id="btn_edit_client_list" className={"edit-button"} onClick={()=>getClientDetails(row["_id"])}>
                                                         <EditIcon/>
                                                     </Button>&nbsp;
                                                     <Button id="btn_delete_client_list" className={"delete-button"} onClick={() => onDeleteUser(row["_id"])}>

@@ -77,7 +77,7 @@ const UserEditComponent = (props: PropsWithChildren<UserEditComponentProps>) => 
     }
 
     return (
-        <div className={"user-add"}>
+        <div className={"user-edit"}>
             <DialogTitle id="alert-dialog-title">{('Edit Candidate Details')}</DialogTitle>
             {candidateDetails && candidateDetails!==null?
                 <Formik initialValues={{ name: candidateDetails?.name, email: candidateDetails?.email, phone: candidateDetails?.phone, position: candidateDetails?.position, image: candidateDetails?.imgPath }} validateOnChange={true}

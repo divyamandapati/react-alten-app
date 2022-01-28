@@ -37,10 +37,10 @@ const ClientAdd = (props: PropsWithChildren<ClientAddProps>) => {
         console.log(payload);
         const formData = new FormData();
         formData.append('name', payload.name);
-        formData.append('image', payload.image);
+        formData.append('logo', payload.logo);
         console.log(formData);
         console.log(formData.get("name"))
-        CommonService._api.post(ENV.API_URL + 'client', formData, {
+        CommonService._api.post(ENV.API_URL + '/client', formData, {
             'Content-Type': false,
             Accept: 'application/json'
         } ).then((resp) => {

@@ -45,13 +45,13 @@ export default function ClientList(props: any) {
         // config
         if(!list){
             const options = new TsDataListOptions({
-                webMatColumns: ['User Id', 'Name', 'Email', 'Phone','Position','actions'],
-                mobileMatColumns: ['User Id', 'Name', 'Email', 'Phone','Position', 'actions'],
+                // webMatColumns: ['User Id', 'Name', 'Email', 'Phone','Position','actions'],
+                // mobileMatColumns: ['User Id', 'Name', 'Email', 'Phone','Position', 'actions'],
 
-                // webMatColumns: ['uid', 'clientName', 'sessionCount', 'candidatesCount', 'actions'],
-                // mobileMatColumns: ['uid', 'clientName', 'sessionCount', 'candidatesCount', 'actions'],
+                webMatColumns: ['uid', 'clientName', 'sessionCount', 'candidatesCount', 'actions'],
+                mobileMatColumns: ['uid', 'clientName', 'sessionCount', 'candidatesCount', 'actions'],
 
-            }, ENV.API_URL + '/client', setList, ApiService,'get');
+            }, ENV.API_URL + '/clients', setList, ApiService,'post');
 
             let tableWrapperObj = new TsDataListWrapperClass(options)
             setList({ table: tableWrapperObj });
@@ -107,7 +107,7 @@ export default function ClientList(props: any) {
 
     const onDeleteUser = useCallback((id: string) => {
         let payload = {}
-        CommonService._api.delete(ENV.API_URL + 'client/' + id, payload).then(() => {
+        CommonService._api.delete(ENV.API_URL + '/client/' + id, payload).then(() => {
             init()
             onReload(1)
         }).catch((err)=>{
@@ -116,7 +116,7 @@ export default function ClientList(props: any) {
     },[onReload,init])
 
     const getClientDetails = useCallback((id:string)=>{
-        CommonService._api.get(ENV.API_URL + 'client/' + id).then((resp) => {
+        CommonService._api.get(ENV.API_URL + '/client/' + id).then((resp) => {
             setClientDetails(resp?.data);
             console.log(resp?.data)
             openEdit()
@@ -130,9 +130,9 @@ export default function ClientList(props: any) {
             <DialogComponent class={'dialog-side-wrapper'} open={isAddOpen} cancel={cancelAdd}>
                 <ClientAdd cancel={cancelAdd} confirm={confirmAdd} />
             </DialogComponent>
-            {/*<DialogComponent class={'dialog-side-wrapper'} open={isEditOpen} cancel={cancelEdit}>*/}
-            {/*    <ClientEdit cancel={cancelEdit} confirm={confirmEdit} clientDetails={clientDetails}/>*/}
-            {/*</DialogComponent>*/}
+            <DialogComponent class={'dialog-side-wrapper'} open={isEditOpen} cancel={cancelEdit}>
+                <ClientEdit cancel={cancelEdit} confirm={confirmEdit} clientDetails ={clientDetails}/>
+            </DialogComponent>
 
             <div className={'client-list  screen crud-layout'}>
                 <Paper className="paper">
@@ -201,13 +201,10 @@ export default function ClientList(props: any) {
 
                                                 </TableCell>
                                                 <TableCell>
-                                                    {row['email']}
+                                                    {row['totalSessions']}
                                                 </TableCell>
                                                 <TableCell>
-                                                    {row['phone']}
-                                                </TableCell>
-                                                <TableCell>
-                                                    {row['position']}
+                                                    {row['totalCandidates']}
                                                 </TableCell>
                                                 <TableCell>
                                                     <Button id="btn_edit_client_list" className={"edit-button"} onClick={()=>getClientDetails(row["_id"])}>

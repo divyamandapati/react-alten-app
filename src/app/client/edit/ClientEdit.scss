@@ -1,0 +1,16 @@
+@import "src/assets/scss/common";
+
+.client-edit{
+  .form-check-input {
+    margin-left: 40px;
+    transform: scale(1.5);
+    margin-top: 5px;
+  }
+
+
+  .helperText {
+    color: $text-light;
+    font-size: smaller;
+    color: #ffa53c;
+  }
+}

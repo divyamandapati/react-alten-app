@@ -187,8 +187,8 @@ export class TsDataListWrapperClass {
         const cancelTokenSource = CommonService.getCancelToken();
         //let request = this._apiService.post(this.url, payload, {}, { cancelToken: cancelTokenSource.token });
         let request = this._apiService.get(this.url, payload, {}, { cancelToken: cancelTokenSource.token });
-        if (this.method === 'get') {
-            request = this._apiService.get(this.url, payload, {}, { cancelToken: cancelTokenSource.token });
+        if (this.method === 'post') {
+            request = this._apiService.post(this.url, payload, {}, { cancelToken: cancelTokenSource.token });
         }
         if (this._apiCall) {
             this._apiCall.cancel();

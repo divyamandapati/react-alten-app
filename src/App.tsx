@@ -7,7 +7,6 @@ import {ToastContainer} from "react-toastify";
 import './App.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import ConfirmComponent from "./components/core/ConfirmComponent";
-import "./i18n" 
 
 // @ts-ignore
 import packageData from '../package.json';

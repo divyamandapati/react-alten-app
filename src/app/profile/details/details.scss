@@ -6,11 +6,15 @@
   display: flex;
  }
  .profile-section-row-title{
-  font-size: 13px;
-  color: #404248;
+  font-size: 15px;
+  color: #71747a;
  }
  .profile-section-row-value{
-  font-size: 13px;
+  font-size: 15px;
   color: black;
+  padding-left: 15px;
+ }
+ .actions{
+  padding-top: 10px;
  }
 }

@@ -20,18 +20,18 @@ const formValidation = Yup.object({
 export interface UserEditComponentProps {
     cancel: () => void,
     confirm: () => void,
-    userDetails: any,
+    userInfo: any,
 }
 
 
 const EditProfile = (props: PropsWithChildren<UserEditComponentProps>) => {
     const afterCancel = props?.cancel;
     const afterConfirm = props?.confirm;
-    const userDetails = props?.userDetails;
-    console.log(userDetails)
+    const userInfo = props?.userInfo;
+    console.log(userInfo)
 
     const onEdit = (payload: any, { setSubmitting, setErrors }: FormikHelpers<any>) => {
-        CommonService._api.put(ENV.API_URL + 'candidate/' , payload).then((resp) => {
+        CommonService._api.put(ENV.API_URL + '/profile' , payload).then((resp) => {
             // console.log(resp);
             setSubmitting(false);
             if (afterConfirm) {
@@ -53,8 +53,8 @@ const EditProfile = (props: PropsWithChildren<UserEditComponentProps>) => {
     return (
         <div className={"user-edit"}>
             <DialogTitle id="alert-dialog-title">{('Edit Candidate Details')}</DialogTitle>
-            {userDetails && userDetails!==null?
-                <Formik initialValues={{ name: userDetails?.name, email: userDetails?.email, phone: userDetails?.phone, position: userDetails?.position, image: userDetails?.imgPath }} validateOnChange={true}
+            {userInfo && userInfo!==null?
+                <Formik initialValues={{ name: userInfo?.name, email: userInfo?.email, phone: userInfo?.phone}} validateOnChange={true}
                         validationSchema={formValidation} onSubmit={onEdit}>
                     {({ isSubmitting, isValid }) => (<Form className={'form-holder'}>
                         <DialogContent>
@@ -96,7 +96,7 @@ const EditProfile = (props: PropsWithChildren<UserEditComponentProps>) => {
                         <DialogActions>
                             <Button onClick={cancel} color="secondary" id="btn_user_edit_cancel">
                                 {('Cancel')}
-                            </Button>
+                            </Button> &nbsp;&nbsp;
                             <Button type={"submit"} className={"submit"} disabled={isSubmitting || !isValid} variant={"contained"} color="secondary" id="btn_user_edit_submit">
                                 {('Save Changes')}
                             </Button>

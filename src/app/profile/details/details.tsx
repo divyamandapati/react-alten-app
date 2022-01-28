@@ -5,19 +5,42 @@ import {Communications} from "../../../helpers";
 import DialogComponent from "../../../components/core/DialogComponent";
 import EditProfile from "../edit-profile/edit-profile";
 import {Button} from "@material-ui/core";
+import "./details.scss"
+import ChangePasswordComponent from "../change-password/change-password";
 
 export default function Details(props: any) {
     const [isChangePasswordOpen, setIsChangePasswordOpen] = useState<boolean>(false);
     const [isEditOpen, setIsEditOpen] = useState<boolean>(false);
-    const [userDetails,setUserDetails] = useState<any>(null);
+    const [userInfo, setUserInfo] = React.useState<any | null>(null)
+
+
+    const init = useCallback(
+        () => {
+            CommonService._api.get(ENV.API_URL + '/profile').then((resp) => {
+                setUserInfo(resp.data);
+            });
+        },
+        [],
+    )
+    useEffect(() => {
+        init();
+        Communications.pageTitleSubject.next('Profile');
+        Communications.accessRoleSubject.next('');
+    }, [init])
+
     const onReload = useCallback((page = 1) => {
-        if (userDetails) {
-            getUserDetails();
+        if (userInfo) {
+            init()
+
+        } else {
+            setUserInfo((prevState: any) => {
+                prevState?.reload(page);
+                return prevState;
+            })
         }
-        else{
-            console.log("page not fount")
-        }
-    }, [userDetails]);
+    }, [userInfo, init]);
+
+
 
     const openEdit =useCallback (() => {
         setIsEditOpen(true);
@@ -47,33 +70,20 @@ export default function Details(props: any) {
         onReload(1);
     }, [onReload])
 
-
-    useEffect(() => {
-        getUserDetails();
-        Communications.pageTitleSubject.next('Profile');
-        Communications.pageBackButtonSubject.next(null);
-    }, [])
-
-    const getUserDetails = useCallback(()=>{
-        CommonService._api.get(ENV.API_URL + '/profile').then((resp) => {
-            setUserDetails(resp?.data);
-            console.log(userDetails)
-        }).catch((err)=>{
-            CommonService.showToast(err?.error || 'Error', 'error');
-        })
-    },[])
-
     return(
         <>
          <DialogComponent class={'dialog-side-wrapper'} open={isEditOpen} cancel={cancelEdit}>
-            <EditProfile cancel={cancelEdit} confirm={confirmEdit} userDetails={userDetails}/>
+            <EditProfile cancel={cancelEdit} confirm={confirmEdit} userInfo={userInfo}/>
         </DialogComponent>
+            <DialogComponent class={'dialog-side-wrapper'} cancel={cancelChangePassword} open={isChangePasswordOpen}>
+                <ChangePasswordComponent/>
+            </DialogComponent>
         <div className={'details-screen'}>
             <div>
                 <h3>Profile</h3>
                 <div className={'profile-section-row'}>
                     <div className={'profile-section-row-title'}>Name :</div>
-                    <div className={'profile-section-row-value'}>DIVYA</div>
+                    <div className={'profile-section-row-value'}>Divya</div>
                 </div>
                 <div className={'profile-section-row'}>
                     <div className={'profile-section-row-title'}>Phone :</div>
@@ -92,7 +102,7 @@ export default function Details(props: any) {
             <div className="actions">
                 <Button variant={"contained"} color="secondary" id="btn_edit_detaisl" className={"edit_details-button"} onClick={openEdit}>
                     {('Edit Details')}
-                </Button>
+                </Button> &nbsp;&nbsp;
                 <Button variant={"contained"} color="secondary" id="btn_change_password" className={"change_password-button"} onClick={openChangePassword}>
                     {('Change Password')}
                 </Button>

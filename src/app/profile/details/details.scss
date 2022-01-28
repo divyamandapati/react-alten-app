@@ -1,0 +1,16 @@
+@import "src/assets/scss/common";
+
+.details-screen{
+ padding: 10px;
+.profile-section-row{
+  display: flex;
+ }
+ .profile-section-row-title{
+  font-size: 13px;
+  color: #404248;
+ }
+ .profile-section-row-value{
+  font-size: 13px;
+  color: black;
+ }
+}

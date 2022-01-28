@@ -3,27 +3,8 @@ import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
 import { SUPER_ADMIN, CLINIC_ADMIN, DOCTOR, TEAM_MEMBER, HOSPITAL_VIEW } from '../helpers/common-service';
 import AccessControlComponent from './core/AccessControl';
-import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
-import SettingsIcon from '@material-ui/icons/Settings';
-import ViewModuleIcon from '@material-ui/icons/ViewModule';
-import ViewModuleOutlinedIcon from '@material-ui/icons/ViewModuleOutlined';
-import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
-import ReceiptIcon from '@material-ui/icons/Receipt';
-import ReceiptOutlinedIcon from '@material-ui/icons/ReceiptOutlined';
-import PermIdentityOutlinedIcon from '@material-ui/icons/PermIdentityOutlined';
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
-import HomeIcon from '@material-ui/icons/Home';
-import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import GroupIcon from '@material-ui/icons/Group';
-import EventNoteIcon from '@material-ui/icons/EventNote';
-import EventNoteOutlinedIcon from '@material-ui/icons/EventNoteOutlined';
 import GroupOutlinedIcon from '@material-ui/icons/GroupOutlined';
-import LocalHospitalOutlinedIcon from '@material-ui/icons/LocalHospitalOutlined';
-import PersonIcon from '@material-ui/icons/Person';
-import AccountBalanceWalletOutlinedIcon from '@material-ui/icons/AccountBalanceWalletOutlined';
-import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
-import ViewListIcon from '@material-ui/icons/ViewList';
-import ViewListOutlinedIcon from '@material-ui/icons/ViewListOutlined';
 import { useTranslation } from 'react-i18next';
 
 export interface Menu {
@@ -33,7 +14,7 @@ export interface Menu {
     outlineIcon: any;
     filledIcon: any;
     id:any;
-    allowed_roles: ('admin' | 'hospital_admin' | 'doctor' | 'team_member' | 'hospital_view')[];
+    allowed_roles: ('admin')[];
 }
 
 export const MENUITEMS: Menu[] = [
@@ -44,7 +25,7 @@ export const MENUITEMS: Menu[] = [
         outlineIcon: <GroupOutlinedIcon />,
         filledIcon: <GroupIcon />,
         id:"users",
-        allowed_roles: [ SUPER_ADMIN, TEAM_MEMBER ]
+        allowed_roles: [ SUPER_ADMIN ]
     },
     {
         state: '/client/list',
@@ -52,8 +33,17 @@ export const MENUITEMS: Menu[] = [
         type: 'link',
         outlineIcon: <GroupOutlinedIcon />,
         filledIcon: <GroupIcon />,
-        id:"users",
-        allowed_roles: [ SUPER_ADMIN, TEAM_MEMBER ]
+        id:"client",
+        allowed_roles: [ SUPER_ADMIN]
+    },
+    {
+        state: '/profile',
+        name: 'Profile',
+        type: 'link',
+        outlineIcon: <GroupOutlinedIcon />,
+        filledIcon: <GroupIcon />,
+        id:"profile",
+        allowed_roles: [ SUPER_ADMIN]
     },
 ];
 const MenuItemsComponent = (props: any) => {

@@ -11,6 +11,7 @@ import { Communications } from '../helpers';
 import { logoutUser } from '../store/actions/auth.action';
 import UsersListScreen from '../app/users/list/UsersListScreen';
 import ClientList from "../app/client/list/ClientList";
+import Details from "../app/profile/details/details";
 // @ts-ignore
 const AuthLayoutRoute = ({ component: Component, ...rest }) => {
     let doneUrl = '/users/list';
@@ -94,6 +95,7 @@ const Navigator = (props: any) => {
             <AuthLayoutRoute path="/login" component={LoginScreen} />
             <AppLayoutRoute path="/users/list" component={UsersListScreen} />
             <AppLayoutRoute path="/client/list" component={ClientList} />
+            <AppLayoutRoute path = "/profile" component={Details} />
             <Route path="/not-found">
                 <NotFoundComponent />
             </Route>
